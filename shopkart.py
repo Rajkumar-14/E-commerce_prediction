@@ -144,6 +144,31 @@ div[data-baseweb="popover"] li:hover {
         border-radius: 10px !important;
         backdrop-filter: blur(8px);
     }
+
+    /* ===== Fix Selectbox Text Visibility ===== */
+
+/* Main select container */
+[data-testid="stSelectbox"] [data-baseweb="select"] {
+    background-color: #1E293B !important;
+}
+
+/* Selected value */
+[data-testid="stSelectbox"] [data-baseweb="select"] span {
+    color: #FFFFFF !important;
+    -webkit-text-fill-color: #FFFFFF !important;
+    opacity: 1 !important;
+}
+
+/* Selected value container */
+[data-testid="stSelectbox"] [data-baseweb="select"] div {
+    color: #FFFFFF !important;
+    -webkit-text-fill-color: #FFFFFF !important;
+}
+
+/* SVG dropdown arrow */
+[data-testid="stSelectbox"] svg {
+    fill: #FFFFFF !important;
+}
 </style>
 """, unsafe_allow_html=True)
 
