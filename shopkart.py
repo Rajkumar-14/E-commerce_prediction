@@ -65,17 +65,31 @@ st.markdown("""
     border-radius: 8px !important;
 }
 
-/* Selectbox */
-.stSelectbox div[data-baseweb="select"] > div {
-    background-color: #1E293B !important;
-    color: #FFFFFF !important;
+/* ===== SELECTBOX FIX ===== */
+
+/* Background */
+[data-testid="stSelectbox"] [data-baseweb="select"] > div {
+    background: #1E293B !important;
     border: 1px solid #475569 !important;
     border-radius: 8px !important;
 }
 
-/* Selected text in Selectbox */
-.stSelectbox span {
+/* Selected value */
+[data-testid="stSelectbox"] div[role="combobox"] {
     color: #FFFFFF !important;
+    -webkit-text-fill-color: #FFFFFF !important;
+}
+
+/* Every span/div inside the select */
+[data-testid="stSelectbox"] div,
+[data-testid="stSelectbox"] span {
+    color: #FFFFFF !important;
+    -webkit-text-fill-color: #FFFFFF !important;
+}
+
+/* Arrow */
+[data-testid="stSelectbox"] svg {
+    fill: #FFFFFF !important;
 }
 
 /* Date Input */
