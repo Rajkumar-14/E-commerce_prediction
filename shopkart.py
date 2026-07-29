@@ -54,173 +54,53 @@ p,label{
     box-shadow:0 10px 35px rgba(0,0,0,.35);
 }
 
-/* ===================== LABELS ===================== */
-
-.stNumberInput label,
-.stSelectbox label,
-.stSlider label,
-.stDateInput label{
-    color:#FFFFFF !important;
-    font-weight:600;
-}
-
-/* ===================== INPUTS ===================== */
+/* ---------- INPUTS ---------- */
 
 .stNumberInput input,
+.stTextInput input,
 .stDateInput input{
-
     background:#1E293B !important;
-
-    color:#FFFFFF !important;
-
-    -webkit-text-fill-color:#FFFFFF !important;
-
-    border:1px solid #475569 !important;
-
-    border-radius:10px !important;
-
+    color:white !important;
+    -webkit-text-fill-color:white !important;
+    border-radius:8px !important;
 }
 
-/* ===================== SELECTBOX ===================== */
+/* ---------- SELECTBOX ---------- */
 
-[data-testid="stSelectbox"] [data-baseweb="select"]{
-
-    background:#1E293B !important;
-
-    border:1px solid #475569 !important;
-
-    border-radius:10px !important;
-
+.stSelectbox{
+    color:white !important;
 }
 
-/* Selected value */
-
-[data-testid="stSelectbox"] div{
-
-    color:#FFFFFF !important;
-
-    -webkit-text-fill-color:#FFFFFF !important;
-
+.stSelectbox *{
+    color:white !important;
 }
 
-/* Arrow */
-
-[data-testid="stSelectbox"] svg{
-
-    fill:#FFFFFF !important;
-
+.stSelectbox div{
+    color:white !important;
+    -webkit-text-fill-color:white !important;
 }
 
-/* ===================== DROPDOWN ===================== */
+.stSelectbox span{
+    color:white !important;
+}
+
+.stSelectbox svg{
+    fill:white !important;
+}
+
+/* Dropdown */
 
 div[role="listbox"]{
-
     background:#1E293B !important;
-
-    border-radius:10px !important;
-
 }
 
 div[role="option"]{
-
-    color:#FFFFFF !important;
-
-    background:#1E293B !important;
-
+    color:white !important;
 }
 
 div[role="option"]:hover{
-
     background:#334155 !important;
-
 }
-
-/* ===================== DATE ===================== */
-
-.stDateInput input{
-
-    color:#FFFFFF !important;
-
-    -webkit-text-fill-color:#FFFFFF !important;
-
-}
-
-/* ===================== BUTTON ===================== */
-
-.stButton>button{
-
-    width:100%;
-
-    background:linear-gradient(135deg,#2563EB,#1D4ED8);
-
-    color:white !important;
-
-    border:none;
-
-    border-radius:10px;
-
-    padding:12px;
-
-    font-weight:700;
-
-    transition:.3s;
-
-}
-
-.stButton>button:hover{
-
-    background:linear-gradient(135deg,#3B82F6,#2563EB);
-
-    transform:translateY(-2px);
-
-}
-
-/* ===================== SLIDER ===================== */
-
-.stSlider{
-
-    color:white !important;
-
-}
-
-/* ===================== ALERTS ===================== */
-
-.stSuccess,
-.stError,
-.stWarning{
-
-    border-radius:10px !important;
-
-}
-
-/* ===================== REMOVE WHITE INPUT TEXT ===================== */
-
-input{
-
-    color:#FFFFFF !important;
-
-    -webkit-text-fill-color:#FFFFFF !important;
-
-}
-
-/* ===================== FOCUS ===================== */
-
-input:focus{
-
-    border:1px solid #38BDF8 !important;
-
-    box-shadow:0 0 10px rgba(56,189,248,.4);
-
-}
-
-/* ===================== PLACEHOLDER ===================== */
-
-input::placeholder{
-
-    color:#CBD5E1 !important;
-
-}
-
 </style>
 """, unsafe_allow_html=True)
 
