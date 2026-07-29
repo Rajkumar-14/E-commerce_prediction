@@ -54,36 +54,69 @@ st.markdown("""
         letter-spacing: 0.3px;
     }
 
-    /* Input Boxes Styling */
-    div[data-baseweb="input"], div[data-baseweb="select"] > div {
-        background-color: rgba(15, 23, 42, 0.8) !important;
-        border: 1px solid #475569 !important;
-        border-radius: 8px !important;
-        color: #FFFFFF !important;
-    }
+    /* ================= INPUT BOXES ================= */
 
-    /* Hover State for Input Boxes */
-    div[data-baseweb="input"]:hover, div[data-baseweb="select"] > div:hover {
-        border-color: #38BDF8 !important;
-        box-shadow: 0 0 8px rgba(56, 189, 248, 0.3);
-    }
+/* Number Input */
+.stNumberInput input {
+    background-color: #1E293B !important;
+    color: #FFFFFF !important;
+    -webkit-text-fill-color: #FFFFFF !important;
+    border: 1px solid #475569 !important;
+    border-radius: 8px !important;
+}
 
-    /* Text inside Inputs & Dropdowns */
-    input, div[data-testid="stMarkdownContainer"] p {
-        color: #FFFFFF !important;
-    }
+/* Selectbox */
+.stSelectbox div[data-baseweb="select"] > div {
+    background-color: #1E293B !important;
+    color: #FFFFFF !important;
+    border: 1px solid #475569 !important;
+    border-radius: 8px !important;
+}
 
-    /* Dropdown Menus Text & Hover Fixes */
-    div[data-baseweb="popover"] ul {
-        background-color: #1E293B !important;
-    }
-    div[data-baseweb="popover"] li {
-        color: #F8FAFC !important;
-    }
-    div[data-baseweb="popover"] li:hover {
-        background-color: #0F172A !important;
-        color: #38BDF8 !important;
-    }
+/* Selected text in Selectbox */
+.stSelectbox span {
+    color: #FFFFFF !important;
+}
+
+/* Date Input */
+.stDateInput input {
+    background-color: #1E293B !important;
+    color: #FFFFFF !important;
+    -webkit-text-fill-color: #FFFFFF !important;
+    border: 1px solid #475569 !important;
+}
+
+/* Placeholder */
+input::placeholder {
+    color: #CBD5E1 !important;
+}
+
+/* Hover */
+.stNumberInput input:hover,
+.stDateInput input:hover,
+.stSelectbox div[data-baseweb="select"] > div:hover {
+    border-color: #38BDF8 !important;
+}
+
+/* Force all input text to white */
+input {
+    color: #FFFFFF !important;
+    -webkit-text-fill-color: #FFFFFF !important;
+}
+
+/* Dropdown menu */
+div[data-baseweb="popover"] {
+    background-color: #1E293B !important;
+}
+
+div[data-baseweb="popover"] li {
+    color: white !important;
+}
+
+div[data-baseweb="popover"] li:hover {
+    background-color: #334155 !important;
+    color: white !important;
+}
 
     /* Custom Primary Button Styling */
     div.stButton > button {
