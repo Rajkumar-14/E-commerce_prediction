@@ -67,31 +67,45 @@ st.markdown("""
     border-radius: 8px !important;
 }
 
-/* ===== SELECTBOX FIX ===== */
+/* ===== Streamlit 1.60 Selectbox ===== */
 
-/* Background */
-[data-testid="stSelectbox"] [data-baseweb="select"] > div {
+/* Selectbox background */
+[data-testid="stSelectbox"] [data-baseweb="select"] {
     background: #1E293B !important;
     border: 1px solid #475569 !important;
     border-radius: 8px !important;
 }
 
-/* Selected value */
-[data-testid="stSelectbox"] div[role="combobox"] {
+/* Selected text */
+[data-testid="stSelectbox"] input {
     color: #FFFFFF !important;
     -webkit-text-fill-color: #FFFFFF !important;
+    opacity: 1 !important;
+    caret-color: transparent !important;
 }
 
-/* Every span/div inside the select */
-[data-testid="stSelectbox"] div,
-[data-testid="stSelectbox"] span {
+/* Placeholder */
+[data-testid="stSelectbox"] input::placeholder {
     color: #FFFFFF !important;
-    -webkit-text-fill-color: #FFFFFF !important;
 }
 
 /* Arrow */
 [data-testid="stSelectbox"] svg {
     fill: #FFFFFF !important;
+}
+
+/* Dropdown */
+div[role="listbox"] {
+    background: #1E293B !important;
+}
+
+div[role="option"] {
+    color: #FFFFFF !important;
+    background: #1E293B !important;
+}
+
+div[role="option"]:hover {
+    background: #334155 !important;
 }
 
 /* Date Input */
