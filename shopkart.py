@@ -3,6 +3,8 @@ import pandas as pd
 import numpy as np
 import joblib
 from datetime import datetime
+import streamlit as st
+st.write(st.__version__)
 
 # --- PAGE CONFIG ---
 st.set_page_config(
