@@ -16,189 +16,211 @@ st.set_page_config(
 # --- CUSTOM STYLES (CSS ONLY ADDITIONS) ---
 st.markdown("""
 <style>
-    /* Background Image with Dark Overlay for High Contrast */
-    .stApp {
-        background: linear-gradient(rgba(15, 23, 42, 0.85), rgba(15, 23, 42, 0.85)), 
-                    url("https://images.unsplash.com/photo-1557804506-669a67965ba0?auto=format&fit=crop&w=1920&q=80");
-        background-size: cover;
-        background-position: center;
-        background-attachment: fixed;
-        font-family: 'Inter', sans-serif;
-    }
 
-    /* Header & Typography Styling */
-    h1 {
-        color: #FFFFFF !important;
-        font-weight: 800 !important;
-        text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
-    }
-    
-    h2, h3, p, label, .stMarkdown {
-        color: #E2E8F0 !important;
-        font-weight: 500 !important;
-    }
+/* ===================== APP ===================== */
 
-    /* Frosted Card Container for Input Form */
-    div[data-testid="stHorizontalBlock"] {
-        background: rgba(30, 41, 59, 0.75);
-        backdrop-filter: blur(12px);
-        padding: 2rem;
-        border-radius: 16px;
-        border: 1px solid rgba(255, 255, 255, 0.1);
-        box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3);
-        margin-bottom: 1.5rem;
-    }
-
-    /* Form Labels High Visibility */
-    .stNumberInput label, .stSelectbox label, .stSlider label, .stDateInput label {
-        color: #F8FAFC !important;
-        font-size: 0.95rem !important;
-        letter-spacing: 0.3px;
-    }
-
-    /* ================= INPUT BOXES ================= */
-
-/* Number Input */
-.stNumberInput input {
-    background-color: #1E293B !important;
-    color: #FFFFFF !important;
-    -webkit-text-fill-color: #FFFFFF !important;
-    border: 1px solid #475569 !important;
-    border-radius: 8px !important;
+.stApp{
+    background:
+    linear-gradient(rgba(15,23,42,.82),rgba(15,23,42,.82)),
+    url("https://images.unsplash.com/photo-1557804506-669a67965ba0?auto=format&fit=crop&w=1920&q=80");
+    background-size:cover;
+    background-position:center;
+    background-attachment:fixed;
 }
 
-/* ===== Streamlit 1.60 Selectbox ===== */
+/* ===================== TEXT ===================== */
 
-/* Selectbox background */
-[data-testid="stSelectbox"] [data-baseweb="select"] {
-    background: #1E293B !important;
-    border: 1px solid #475569 !important;
-    border-radius: 8px !important;
+h1,h2,h3,h4{
+    color:#FFFFFF !important;
+    font-weight:700;
 }
 
-/* Selected text */
-[data-testid="stSelectbox"] input {
-    color: #FFFFFF !important;
-    -webkit-text-fill-color: #FFFFFF !important;
-    opacity: 1 !important;
-    caret-color: transparent !important;
+p,label{
+    color:#E2E8F0 !important;
 }
 
-/* Placeholder */
-[data-testid="stSelectbox"] input::placeholder {
-    color: #FFFFFF !important;
+[data-testid="stMarkdownContainer"]{
+    color:#E2E8F0 !important;
 }
 
-/* Arrow */
-[data-testid="stSelectbox"] svg {
-    fill: #FFFFFF !important;
+/* ===================== CARD ===================== */
+
+[data-testid="stHorizontalBlock"]{
+    background:rgba(30,41,59,.82);
+    backdrop-filter:blur(12px);
+    padding:30px;
+    border-radius:18px;
+    border:1px solid rgba(255,255,255,.08);
+    box-shadow:0 10px 35px rgba(0,0,0,.35);
 }
 
-/* Dropdown */
-div[role="listbox"] {
-    background: #1E293B !important;
+/* ===================== LABELS ===================== */
+
+.stNumberInput label,
+.stSelectbox label,
+.stSlider label,
+.stDateInput label{
+    color:#FFFFFF !important;
+    font-weight:600;
 }
 
-div[role="option"] {
-    color: #FFFFFF !important;
-    background: #1E293B !important;
+/* ===================== INPUTS ===================== */
+
+.stNumberInput input,
+.stDateInput input{
+
+    background:#1E293B !important;
+
+    color:#FFFFFF !important;
+
+    -webkit-text-fill-color:#FFFFFF !important;
+
+    border:1px solid #475569 !important;
+
+    border-radius:10px !important;
+
 }
 
-div[role="option"]:hover {
-    background: #334155 !important;
-}
+/* ===================== SELECTBOX ===================== */
 
-/* Date Input */
-.stDateInput input {
-    background-color: #1E293B !important;
-    color: #FFFFFF !important;
-    -webkit-text-fill-color: #FFFFFF !important;
-    border: 1px solid #475569 !important;
-}
+[data-testid="stSelectbox"] [data-baseweb="select"]{
 
-/* Placeholder */
-input::placeholder {
-    color: #CBD5E1 !important;
-}
+    background:#1E293B !important;
 
-/* Hover */
-.stNumberInput input:hover,
-.stDateInput input:hover,
-.stSelectbox div[data-baseweb="select"] > div:hover {
-    border-color: #38BDF8 !important;
-}
+    border:1px solid #475569 !important;
 
-/* Force all input text to white */
-input {
-    color: #FFFFFF !important;
-    -webkit-text-fill-color: #FFFFFF !important;
-}
+    border-radius:10px !important;
 
-/* Dropdown menu */
-div[data-baseweb="popover"] {
-    background-color: #1E293B !important;
-}
-
-div[data-baseweb="popover"] li {
-    color: white !important;
-}
-
-div[data-baseweb="popover"] li:hover {
-    background-color: #334155 !important;
-    color: white !important;
-}
-
-    /* Custom Primary Button Styling */
-    div.stButton > button {
-        width: 100%;
-        background: linear-gradient(135deg, #2563EB 0%, #1D4ED8 100%) !important;
-        color: #FFFFFF !important;
-        font-weight: 700 !important;
-        padding: 0.75rem 1.5rem !important;
-        border-radius: 10px !important;
-        border: none !important;
-        box-shadow: 0 4px 14px 0 rgba(37, 99, 235, 0.39);
-        transition: all 0.3s ease !important;
-    }
-
-    /* Primary Button Hover State */
-    div.stButton > button:hover {
-        background: linear-gradient(135deg, #3B82F6 0%, #2563EB 100%) !important;
-        color: #FFFFFF !important;
-        transform: translateY(-2px);
-        box-shadow: 0 6px 20px 0 rgba(37, 99, 235, 0.6);
-    }
-
-    /* Result Alert Box Overrides */
-    .stAlert {
-        border-radius: 10px !important;
-        backdrop-filter: blur(8px);
-    }
-
-    /* ===== Fix Selectbox Text Visibility ===== */
-
-/* Main select container */
-[data-testid="stSelectbox"] [data-baseweb="select"] {
-    background-color: #1E293B !important;
 }
 
 /* Selected value */
-[data-testid="stSelectbox"] [data-baseweb="select"] span {
-    color: #FFFFFF !important;
-    -webkit-text-fill-color: #FFFFFF !important;
-    opacity: 1 !important;
+
+[data-testid="stSelectbox"] div{
+
+    color:#FFFFFF !important;
+
+    -webkit-text-fill-color:#FFFFFF !important;
+
 }
 
-/* Selected value container */
-[data-testid="stSelectbox"] [data-baseweb="select"] div {
-    color: #FFFFFF !important;
-    -webkit-text-fill-color: #FFFFFF !important;
+/* Arrow */
+
+[data-testid="stSelectbox"] svg{
+
+    fill:#FFFFFF !important;
+
 }
 
-/* SVG dropdown arrow */
-[data-testid="stSelectbox"] svg {
-    fill: #FFFFFF !important;
+/* ===================== DROPDOWN ===================== */
+
+div[role="listbox"]{
+
+    background:#1E293B !important;
+
+    border-radius:10px !important;
+
 }
+
+div[role="option"]{
+
+    color:#FFFFFF !important;
+
+    background:#1E293B !important;
+
+}
+
+div[role="option"]:hover{
+
+    background:#334155 !important;
+
+}
+
+/* ===================== DATE ===================== */
+
+.stDateInput input{
+
+    color:#FFFFFF !important;
+
+    -webkit-text-fill-color:#FFFFFF !important;
+
+}
+
+/* ===================== BUTTON ===================== */
+
+.stButton>button{
+
+    width:100%;
+
+    background:linear-gradient(135deg,#2563EB,#1D4ED8);
+
+    color:white !important;
+
+    border:none;
+
+    border-radius:10px;
+
+    padding:12px;
+
+    font-weight:700;
+
+    transition:.3s;
+
+}
+
+.stButton>button:hover{
+
+    background:linear-gradient(135deg,#3B82F6,#2563EB);
+
+    transform:translateY(-2px);
+
+}
+
+/* ===================== SLIDER ===================== */
+
+.stSlider{
+
+    color:white !important;
+
+}
+
+/* ===================== ALERTS ===================== */
+
+.stSuccess,
+.stError,
+.stWarning{
+
+    border-radius:10px !important;
+
+}
+
+/* ===================== REMOVE WHITE INPUT TEXT ===================== */
+
+input{
+
+    color:#FFFFFF !important;
+
+    -webkit-text-fill-color:#FFFFFF !important;
+
+}
+
+/* ===================== FOCUS ===================== */
+
+input:focus{
+
+    border:1px solid #38BDF8 !important;
+
+    box-shadow:0 0 10px rgba(56,189,248,.4);
+
+}
+
+/* ===================== PLACEHOLDER ===================== */
+
+input::placeholder{
+
+    color:#CBD5E1 !important;
+
+}
+
 </style>
 """, unsafe_allow_html=True)
 
