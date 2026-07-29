@@ -11,106 +11,144 @@ st.set_page_config(
     layout="wide"
 )
 
-# --- CUSTOM STYLES (CSS ONLY ADDITIONS) ---
+# --- CUSTOM STYLES (LIGHT/DARK MODE COMPATIBLE) ---
 st.markdown("""
 <style>
-    /* Background Image with Dark Overlay for High Contrast */
-    .stApp {
-        background: linear-gradient(rgba(15, 23, 42, 0.85), rgba(15, 23, 42, 0.85)), 
-                    url("https://images.unsplash.com/photo-1557804506-669a67965ba0?auto=format&fit=crop&w=1920&q=80");
-        background-size: cover;
-        background-position: center;
-        background-attachment: fixed;
-        font-family: 'Inter', sans-serif;
-    }
+/* ===================== BASE APP ===================== */
+.stApp {
+    background: linear-gradient(rgba(15, 23, 42, 0.85), rgba(15, 23, 42, 0.85)),
+                url("https://images.unsplash.com/photo-1557804506-669a67965ba0?auto=format&fit=crop&w=1920&q=80");
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    font-family: 'Inter', sans-serif;
+}
 
-    /* Header & Typography Styling */
-    h1 {
-        color: #FFFFFF !important;
-        font-weight: 800 !important;
-        text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
-    }
-    
-    h2, h3, p, label, .stMarkdown {
-        color: #E2E8F0 !important;
-        font-weight: 500 !important;
-    }
+/* ===================== TYPOGRAPHY & LABELS ===================== */
+h1, h2, h3, h4 {
+    color: #FFFFFF !important;
+    font-weight: 700 !important;
+}
 
-    /* Frosted Card Container for Input Form */
-    div[data-testid="stHorizontalBlock"] {
-        background: rgba(30, 41, 59, 0.75);
-        backdrop-filter: blur(12px);
-        padding: 2rem;
-        border-radius: 16px;
-        border: 1px solid rgba(255, 255, 255, 0.1);
-        box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3);
-        margin-bottom: 1.5rem;
-    }
+p, span, label, div[data-testid="stMarkdownContainer"] p {
+    color: #F8FAFC !important;
+}
 
-    /* Form Labels High Visibility */
-    .stNumberInput label, .stSelectbox label, .stSlider label, .stDateInput label {
-        color: #F8FAFC !important;
-        font-size: 0.95rem !important;
-        letter-spacing: 0.3px;
-    }
+/* Force Form Field Labels to stay white regardless of Streamlit theme */
+.stNumberInput label, .stSelectbox label, .stSlider label, .stDateInput label {
+    color: #F8FAFC !important;
+    font-size: 0.95rem !important;
+    font-weight: 600 !important;
+}
 
-    /* Input Boxes Styling */
-    div[data-baseweb="input"], div[data-baseweb="select"] > div {
-        background-color: rgba(15, 23, 42, 0.8) !important;
-        border: 1px solid #475569 !important;
-        border-radius: 8px !important;
-        color: #FFFFFF !important;
-    }
+/* ===================== CARD CONTAINER ===================== */
+[data-testid="stHorizontalBlock"] {
+    background: rgba(30, 41, 59, 0.85);
+    backdrop-filter: blur(14px);
+    padding: 2rem;
+    border-radius: 18px;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+    margin-bottom: 1.5rem;
+}
 
-    /* Hover State for Input Boxes */
-    div[data-baseweb="input"]:hover, div[data-baseweb="select"] > div:hover {
-        border-color: #38BDF8 !important;
-        box-shadow: 0 0 8px rgba(56, 189, 248, 0.3);
-    }
+/* ===================== INPUT CONTROL FIELDS ===================== */
+/* Number Input, Text Input, Date Input Containers */
+div[data-baseweb="input"] {
+    background-color: #0F172A !important;
+    border: 1px solid #475569 !important;
+    border-radius: 8px !important;
+}
 
-    /* Text inside Inputs & Dropdowns */
-    input, div[data-testid="stMarkdownContainer"] p {
-        color: #FFFFFF !important;
-    }
+/* Selectbox Outer Input Container */
+div[data-baseweb="select"] > div {
+    background-color: #0F172A !important;
+    border: 1px solid #475569 !important;
+    border-radius: 8px !important;
+    color: #FFFFFF !important;
+}
 
-    /* Dropdown Menus Text & Hover Fixes */
-    div[data-baseweb="popover"] ul {
-        background-color: #1E293B !important;
-    }
-    div[data-baseweb="popover"] li {
-        color: #F8FAFC !important;
-    }
-    div[data-baseweb="popover"] li:hover {
-        background-color: #0F172A !important;
-        color: #38BDF8 !important;
-    }
+/* Actual HTML Input element inside number & date fields */
+div[data-baseweb="input"] input {
+    background-color: transparent !important;
+    color: #FFFFFF !important;
+    -webkit-text-fill-color: #FFFFFF !important;
+    font-weight: 500 !important;
+}
 
-    /* Custom Primary Button Styling */
-    div.stButton > button {
-        width: 100%;
-        background: linear-gradient(135deg, #2563EB 0%, #1D4ED8 100%) !important;
-        color: #FFFFFF !important;
-        font-weight: 700 !important;
-        padding: 0.75rem 1.5rem !important;
-        border-radius: 10px !important;
-        border: none !important;
-        box-shadow: 0 4px 14px 0 rgba(37, 99, 235, 0.39);
-        transition: all 0.3s ease !important;
-    }
+/* Focus and Hover states for all inputs */
+div[data-baseweb="input"]:hover, div[data-baseweb="select"] > div:hover {
+    border-color: #38BDF8 !important;
+    box-shadow: 0 0 8px rgba(56, 189, 248, 0.4);
+}
 
-    /* Primary Button Hover State */
-    div.stButton > button:hover {
-        background: linear-gradient(135deg, #3B82F6 0%, #2563EB 100%) !important;
-        color: #FFFFFF !important;
-        transform: translateY(-2px);
-        box-shadow: 0 6px 20px 0 rgba(37, 99, 235, 0.6);
-    }
+/* SVG Arrows and Icons inside Dropdowns & Dates */
+div[data-baseweb="select"] svg, div[data-baseweb="input"] svg {
+    fill: #38BDF8 !important;
+    color: #38BDF8 !important;
+}
 
-    /* Result Alert Box Overrides */
-    .stAlert {
-        border-radius: 10px !important;
-        backdrop-filter: blur(8px);
-    }
+/* ===================== DROPDOWN MENUS (POPOVER) ===================== */
+/* Dropdown popover container */
+div[data-baseweb="popover"] {
+    background-color: #1E293B !important;
+}
+
+div[data-baseweb="popover"] ul, div[role="listbox"] {
+    background-color: #1E293B !important;
+    border: 1px solid #475569 !important;
+    border-radius: 8px !important;
+}
+
+/* Dropdown list items */
+div[role="option"], div[data-baseweb="popover"] li {
+    background-color: #1E293B !important;
+    color: #F8FAFC !important;
+    -webkit-text-fill-color: #F8FAFC !important;
+    font-weight: 500 !important;
+    padding: 10px 14px !important;
+}
+
+/* Hover and active states for menu options */
+div[role="option"]:hover, div[role="option"][aria-selected="true"],
+div[data-baseweb="popover"] li:hover {
+    background-color: #0F172A !important;
+    color: #38BDF8 !important;
+    -webkit-text-fill-color: #38BDF8 !important;
+}
+
+/* ===================== SLIDER STYLING ===================== */
+div[data-baseweb="slider"] {
+    color: #38BDF8 !important;
+}
+
+/* ===================== BUTTON STYLING ===================== */
+div.stButton > button {
+    width: 100%;
+    background: linear-gradient(135deg, #2563EB 0%, #1D4ED8 100%) !important;
+    color: #FFFFFF !important;
+    -webkit-text-fill-color: #FFFFFF !important;
+    font-weight: 700 !important;
+    padding: 0.75rem 1.5rem !important;
+    border-radius: 10px !important;
+    border: none !important;
+    box-shadow: 0 4px 14px 0 rgba(37, 99, 235, 0.4);
+    transition: all 0.3s ease !important;
+}
+
+div.stButton > button:hover {
+    background: linear-gradient(135deg, #3B82F6 0%, #2563EB 100%) !important;
+    color: #FFFFFF !important;
+    -webkit-text-fill-color: #FFFFFF !important;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px 0 rgba(37, 99, 235, 0.6);
+}
+
+/* Alert Boxes Override */
+.stAlert {
+    border-radius: 10px !important;
+    backdrop-filter: blur(8px);
+}
 </style>
 """, unsafe_allow_html=True)
 
@@ -264,4 +302,3 @@ if st.button("Predict Profit Category"):
 
         for item in suggestions:
             st.warning(item)
-
