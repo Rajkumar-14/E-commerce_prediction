@@ -3,8 +3,6 @@ import pandas as pd
 import numpy as np
 import joblib
 from datetime import datetime
-import streamlit as st
-st.write(st.__version__)
 
 # --- PAGE CONFIG ---
 st.set_page_config(
@@ -16,91 +14,103 @@ st.set_page_config(
 # --- CUSTOM STYLES (CSS ONLY ADDITIONS) ---
 st.markdown("""
 <style>
+    /* Background Image with Dark Overlay for High Contrast */
+    .stApp {
+        background: linear-gradient(rgba(15, 23, 42, 0.85), rgba(15, 23, 42, 0.85)), 
+                    url("https://images.unsplash.com/photo-1557804506-669a67965ba0?auto=format&fit=crop&w=1920&q=80");
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed;
+        font-family: 'Inter', sans-serif;
+    }
 
-/* ===================== APP ===================== */
+    /* Header & Typography Styling */
+    h1 {
+        color: #FFFFFF !important;
+        font-weight: 800 !important;
+        text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+    }
+    
+    h2, h3, p, label, .stMarkdown {
+        color: #E2E8F0 !important;
+        font-weight: 500 !important;
+    }
 
-.stApp{
-    background:
-    linear-gradient(rgba(15,23,42,.82),rgba(15,23,42,.82)),
-    url("https://images.unsplash.com/photo-1557804506-669a67965ba0?auto=format&fit=crop&w=1920&q=80");
-    background-size:cover;
-    background-position:center;
-    background-attachment:fixed;
-}
+    /* Frosted Card Container for Input Form */
+    div[data-testid="stHorizontalBlock"] {
+        background: rgba(30, 41, 59, 0.75);
+        backdrop-filter: blur(12px);
+        padding: 2rem;
+        border-radius: 16px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3);
+        margin-bottom: 1.5rem;
+    }
 
-/* ===================== TEXT ===================== */
+    /* Form Labels High Visibility */
+    .stNumberInput label, .stSelectbox label, .stSlider label, .stDateInput label {
+        color: #F8FAFC !important;
+        font-size: 0.95rem !important;
+        letter-spacing: 0.3px;
+    }
 
-h1,h2,h3,h4{
-    color:#FFFFFF !important;
-    font-weight:700;
-}
+    /* Input Boxes Styling */
+    div[data-baseweb="input"], div[data-baseweb="select"] > div {
+        background-color: rgba(15, 23, 42, 0.8) !important;
+        border: 1px solid #475569 !important;
+        border-radius: 8px !important;
+        color: #FFFFFF !important;
+    }
 
-p,label{
-    color:#E2E8F0 !important;
-}
+    /* Hover State for Input Boxes */
+    div[data-baseweb="input"]:hover, div[data-baseweb="select"] > div:hover {
+        border-color: #38BDF8 !important;
+        box-shadow: 0 0 8px rgba(56, 189, 248, 0.3);
+    }
 
-[data-testid="stMarkdownContainer"]{
-    color:#E2E8F0 !important;
-}
+    /* Text inside Inputs & Dropdowns */
+    input, div[data-testid="stMarkdownContainer"] p {
+        color: #FFFFFF !important;
+    }
 
-/* ===================== CARD ===================== */
+    /* Dropdown Menus Text & Hover Fixes */
+    div[data-baseweb="popover"] ul {
+        background-color: #1E293B !important;
+    }
+    div[data-baseweb="popover"] li {
+        color: #F8FAFC !important;
+    }
+    div[data-baseweb="popover"] li:hover {
+        background-color: #0F172A !important;
+        color: #38BDF8 !important;
+    }
 
-[data-testid="stHorizontalBlock"]{
-    background:rgba(30,41,59,.82);
-    backdrop-filter:blur(12px);
-    padding:30px;
-    border-radius:18px;
-    border:1px solid rgba(255,255,255,.08);
-    box-shadow:0 10px 35px rgba(0,0,0,.35);
-}
+    /* Custom Primary Button Styling */
+    div.stButton > button {
+        width: 100%;
+        background: linear-gradient(135deg, #2563EB 0%, #1D4ED8 100%) !important;
+        color: #FFFFFF !important;
+        font-weight: 700 !important;
+        padding: 0.75rem 1.5rem !important;
+        border-radius: 10px !important;
+        border: none !important;
+        box-shadow: 0 4px 14px 0 rgba(37, 99, 235, 0.39);
+        transition: all 0.3s ease !important;
+    }
 
-/* ---------- INPUTS ---------- */
+    /* Primary Button Hover State */
+    div.stButton > button:hover {
+        background: linear-gradient(135deg, #3B82F6 0%, #2563EB 100%) !important;
+        color: #FFFFFF !important;
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px 0 rgba(37, 99, 235, 0.6);
+    }
 
-.stNumberInput input,
-.stTextInput input,
-.stDateInput input{
-    background:#1E293B !important;
-    color:white !important;
-    -webkit-text-fill-color:white !important;
-    border-radius:8px !important;
-}
-
-/* ---------- SELECTBOX ---------- */
-
-.stSelectbox{
-    color:white !important;
-}
-
-.stSelectbox *{
-    color:white !important;
-}
-
-.stSelectbox div{
-    color:white !important;
-    -webkit-text-fill-color:white !important;
-}
-
-.stSelectbox span{
-    color:white !important;
-}
-
-.stSelectbox svg{
-    fill:white !important;
-}
-
-/* Dropdown */
-
-div[role="listbox"]{
-    background:#1E293B !important;
-}
-
-div[role="option"]{
-    color:white !important;
-}
-
-div[role="option"]:hover{
-    background:#334155 !important;
-}
+    /* Result Alert Box Overrides */
+    .stAlert {
+        border-radius: 10px !important;
+        backdrop-filter: blur(8px);
+    }
 </style>
 """, unsafe_allow_html=True)
 
